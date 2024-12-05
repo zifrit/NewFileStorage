@@ -6,6 +6,7 @@ import uvicorn
 from fastapi import FastAPI
 from src.utils.logger import LOGGING
 from src.core.settings import settings
+from src.api.v1 import files
 
 
 @asynccontextmanager
@@ -21,6 +22,8 @@ app = FastAPI(
     openapi_url="/api/openapi.json",
     lifespan=lifespan,
 )
+
+app.include_router(files.router, prefix="/api/files", tags=["files"])
 
 
 if __name__ == "__main__":

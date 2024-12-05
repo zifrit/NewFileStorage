@@ -3,7 +3,7 @@ from src.core.settings import settings
 
 
 class DatabaseHelper:
-    def __init__(self, db_url):
+    def __init__(self, db_url) -> None:
         self.engine = create_async_engine(
             url=db_url,
             echo=False,
@@ -21,4 +21,4 @@ class DatabaseHelper:
             await session.close()
 
 
-db_session = DatabaseHelper(settings.db_settings.DATABASE_URL_ASYNC)
+db_session: DatabaseHelper = DatabaseHelper(settings.db_settings.DATABASE_URL_ASYNC)

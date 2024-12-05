@@ -9,11 +9,11 @@ UPLOAD_DIR = BASE_DIR / "media"
 
 
 class DBSettings(BaseSettings):
-    DB_HOST: str
-    DB_PORT: int
-    DB_USER: str
-    DB_PASS: str
-    DB_NAME: str
+    DB_HOST: str = 'localhost'
+    DB_PORT: int = 5432
+    DB_USER: str = 'postgres'
+    DB_PASS: str = 'postgres'
+    DB_NAME: str = 'postgres'
 
     @property
     def DATABASE_URL_ASYNC(self):
@@ -21,7 +21,7 @@ class DBSettings(BaseSettings):
 
 
 class Settings(BaseSettings):
-    PROJECT_TITLE: str
+    PROJECT_TITLE: str = 'my_app'
     PROJECT_HOST: str = "localhost"
     PROJECT_PORT: int = 8000
     HOST_URL: str = f"http://{PROJECT_HOST}:{PROJECT_PORT}"
@@ -29,7 +29,8 @@ class Settings(BaseSettings):
         "http://0.0.0.0, http://127.0.0.1, http://localhost, http://app"
     )
     MAX_SIZE_FILE: int = 1024 * 1024  # 1 mb
+    STEAM_MAX_SIZE_FILE: int = 1024 * 1024 * 20  # 20 mb
     db_settings: DBSettings = DBSettings()
 
-settings = Settings()
 
+settings = Settings()
